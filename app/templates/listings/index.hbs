@@ -1,0 +1,6 @@
+<section class="body container">
+  <h2>Rental Listings</h2>
+  {{#each @model as |rental|}}
+    <RentalListing @rental={{rental}} />
+  {{/each}}
+</section>

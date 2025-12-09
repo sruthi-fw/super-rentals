@@ -1,0 +1,17 @@
+<article class="rental">
+  <div class="image">
+    <img src={{@rental.image}} alt={{@rental.title}} />
+  </div>
+  <div class="details">
+    <h3><a href="/listings/{{@rental.id}}">{{@rental.title}}</a></h3>
+    <div class="detail">
+      <span>Owner:</span> {{@rental.owner}}
+    </div>
+    <div class="detail">
+      <span>City:</span> {{@rental.city}}
+    </div>
+    <div class="detail">
+      <span>Bedrooms:</span> {{@rental.bedrooms}}
+    </div>
+  </div>
+</article>
