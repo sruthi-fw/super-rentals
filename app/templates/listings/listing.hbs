@@ -1,3 +1,29 @@
-{{page-title "Listing Details"}}
-<h1>Test Dynamic Route</h1>
-{{outlet}}
+{{page-title @model.title}}
+
+<section class="body container rental detailed">
+  <div class="image large">
+    <img src={{@model.image}} alt={{@model.title}} />
+  </div>
+  <div class="details">
+    <h1>{{@model.title}}</h1>
+    
+    <div class="detail">
+      <span>Owner:</span> {{@model.owner}}
+    </div>
+    <div class="detail">
+      <span>City:</span> {{@model.city}}
+    </div>
+    <div class="detail">
+      <span>Bedrooms:</span> {{@model.bedrooms}}
+    </div>
+    
+    <div class="description">
+      <h3>Description</h3>
+      <p>{{@model.description}}</p>
+    </div>
+
+    <div style="margin-top: 30px;">
+      <LinkTo @route="listings" class="button">Back to Listings</LinkTo>
+    </div>
+  </div>
+</section>

@@ -7,4 +7,6 @@ export default class Rental extends Model {
   @attr bedrooms;
   @attr image;
   @attr description;
+  @attr attributes;
+  @attr type;
 }
