@@ -9,4 +9,5 @@ export default class Rental extends Model {
   @attr description;
   @attr attributes;
   @attr type;
+  @attr isWishlisted;
 }

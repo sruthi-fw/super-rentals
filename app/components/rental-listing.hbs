@@ -16,4 +16,5 @@
       <span>Bedrooms:</span> {{@rental.bedrooms}}
     </div>
   </div>
+  <button class="button" type="button" {{ on 'click' (fn this.handleWishlist @rental)}}>{{if @rental.isWishlisted 'Remove Wishlist' 'Add to Wishlist'}}</button>
 </article>
