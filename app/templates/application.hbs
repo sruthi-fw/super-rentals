@@ -3,9 +3,11 @@
 <nav class="menu">
 	<h1><a href="/">SuperRentals</a></h1>
 	<div class="links">
+		{{!-- template-lint-disable no-curly-component-invocation --}}
+  		{{!-- template-lint-disable no-link-to-positional-params --}}
 		{{#link-to "index"}}Home{{/link-to}}
 		{{#link-to "about"}}About{{/link-to}}
-		{{#link-to "contact"}}Contact{{/link-to}}
+  		{{#link-to "contact"}}Contact{{/link-to}}
         {{#link-to "listings"}}Listings{{/link-to}}
 	</div>
 </nav>

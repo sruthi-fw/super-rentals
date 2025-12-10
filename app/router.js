@@ -9,6 +9,7 @@ export default class Router extends EmberRouter {
 Router.map(function () {
   this.route('about');
   this.route('listings', function () {
+    // eslint-disable-next-line ember/routes-segments-snake-case
     this.route('listing', { path: '/:listingId' });
     this.route('index', { path: '/' });
   });
