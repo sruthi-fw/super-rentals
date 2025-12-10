@@ -7,12 +7,10 @@ export default class RentalListingComponent extends Component {
   async handleWishlist(data) {
     let updatedRecord = await this.store.peekRecord('rental', data.id);
     if (updatedRecord) {
-      this.model = updatedRecord;
-      this.model.set('isWishlisted', !updatedRecord.isWishlisted);
+      updatedRecord.set('isWishlisted', !updatedRecord.isWishlisted);
 
-      // Ember Data tracks changes; only changed attributes are sent in the request
       try {
-        await this.model.save();
+        await updatedRecord.save();
         console.log('Record updated successfully.');
       } catch (error) {
         console.error('Update failed:', error);
