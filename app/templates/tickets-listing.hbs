@@ -1,0 +1,25 @@
+{{page-title "TicketsListing"}}
+
+<section class="tickets-page-filters">
+	<label for="page-query">Search:</label>
+	<input id="page-query" type="text" placeholder="Search tickets" value={{this.query}} {{on "input" this.updateQuery}} />
+
+	<label for="page-status">Status:</label>
+	<select id="page-status" onchange={{action this.updateStatus value="target.value"}} value={{this.status}}>
+		{{#each this.statusOptions as |opt|}}
+			<option value={{opt}}>{{if opt opt "All"}}</option>
+		{{/each}}
+	</select>
+
+	<label for="page-priority">Priority:</label>
+	<select id="page-priority" onchange={{action this.updatePriority value="target.value"}} value={{this.priority}}>
+		{{#each this.priorityOptions as |p|}}
+			<option value={{p}}>{{if p p "All"}}</option>
+		{{/each}}
+	</select>
+</section>
+
+<section class="tickets-page-listing">
+	<TicketsList @filter={{this.query}} @status={{this.status}} @priority={{this.priority}} @onFilter={{this.updateQuery}} @resetFilters={{this.resetFilters}} />
+	{{outlet}}
+</section>

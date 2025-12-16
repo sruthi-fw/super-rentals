@@ -1,0 +1,5 @@
+<div class="pagination-controls">
+  <button class="pagination-btn" type="button" {{on "click" this.prev}} disabled={{this.isFirst}}>Prev</button>
+  <span class="pagination-info">Page {{this.args.page}} of {{this.totalPages}}</span>
+  <button class="pagination-btn" type="button" {{on "click" this.next}} disabled={{this.isLast}}>Next</button>
+</div>

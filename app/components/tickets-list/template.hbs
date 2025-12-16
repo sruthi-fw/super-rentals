@@ -1,0 +1,59 @@
+<div class="tickets-list">
+  <div class="table-wrapper">
+    <table class="tickets-table" role="table">
+      <thead>
+        <tr>
+          <th scope="col">Subject</th>
+          <th scope="col">Status</th>
+          <th scope="col">Requester</th>
+          <th scope="col">State</th>
+          <th scope="col">Priority</th>
+          <th scope="col">Created Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#if this.paginatedTickets.length}}
+          {{#each this.paginatedTickets as |ticket|}}
+          <tr class="ticket-row">
+            <td class="ticket-subject"><strong>{{ticket.subject}}</strong></td>
+            <td class="ticket-status">
+              <select {{on 'change' (fn this.updateTicketStatus ticket)}}>
+                {{#each this.statusOptions as |opt|}}
+                  <option value={{opt}} selected={{if (eq opt ticket.ticket_status.name) true}}>{{opt}}</option>
+                {{/each}}
+              </select>
+            </td>
+            <td class="ticket-requester">{{#if ticket.requester.name}}{{ticket.requester.name}}{{else}}-{{/if}}</td>
+            <td class="ticket-state">{{ticket.state}}</td>
+            <td class="ticket-priority">
+              <select {{on 'change' (fn this.updateTicketPriority ticket)}}>
+                {{#each this.priorityOptions as |opt|}}
+                  <option value={{opt.value}} selected={{if (eq opt.value ticket.priority) true}}>{{opt.label}}</option>
+                {{/each}}
+              </select>
+            </td>
+            <td class="ticket-created">{{format-date ticket.created_at}}</td>
+          </tr>
+          {{/each}}
+        {{else}}
+          <tr class="ticket-row">
+            <td colspan="6">
+              <TicketsList::EmptyState @onClear={{this.resetFilters}} />
+            </td>
+          </tr>
+        {{/if}}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tickets-pagination">
+    <TicketsList::Pagination
+      @total={{this.totalFiltered}}
+      @page={{this.page}}
+      @pageSize={{this.pageSize}}
+      @onPageChange={{this.setPage}}
+    />
+  </div>
+
+  {{yield}}
+</div>

@@ -15,4 +15,5 @@ Router.map(function () {
   });
   this.route('contact', { path: '/getting-in-touch' });
   this.route('not-found', { path: '/*path' });
+  this.route('ticketsListing');
 });
