@@ -20,7 +20,7 @@
 </section>
 {{#if this.hasSelectedTickets}}
   <section class="tickets-bulk-actions">
-    <strong>Bulk Actions: </strong>
+    <strong>Bulk Actions: ({{this.selectedTickets.length}})</strong>
     <ul class="list" {{on "click" this.handleBulkAction}}>
         <li data-action="pickup">Pick Up</li>
         <li data-action="merge">Merge</li>

@@ -2802,29 +2802,34 @@ export default class TicketsListingController extends Controller {
   updateQuery(event) {
     this.query = event.target ? event.target.value : event;
     this.page = 1;
+    this.pruneToFiltered();
   }
 
   @action
   updateStatus(value) {
     this.status = value;
     this.page = 1;
+    this.pruneToFiltered();
   }
 
   @action
   updatePriority(value) {
     this.priority = value;
     this.page = 1;
+    this.pruneToFiltered();
   }
 
   @action
   setPage(value) {
     this.page = Number(value) || 1;
+    this.pruneToPaginated();
   }
 
   @action
   setPageSize(value) {
     this.pageSize = Number(value) || 10;
     this.page = 1;
+    this.pruneToPaginated();
   }
 
   @action
@@ -2833,6 +2838,31 @@ export default class TicketsListingController extends Controller {
     this.status = '';
     this.priority = '';
     this.page = 1;
+    this.pruneToFiltered();
+  }
+
+  @action
+  pruneToFiltered() {
+    if (!this.selectedTickets || this.selectedTickets.length === 0) return;
+    const visibleIds = (this.filtered || []).map((t) => t.id);
+    const updated = this.selectedTickets.filter((id) =>
+      visibleIds.includes(id)
+    );
+    if (updated.length !== this.selectedTickets.length) {
+      this.selectedTickets = [...updated];
+    }
+  }
+
+  @action
+  pruneToPaginated() {
+    if (!this.selectedTickets || this.selectedTickets.length === 0) return;
+    const visibleIds = (this.paginatedTickets || []).map((t) => t.id);
+    const updated = this.selectedTickets.filter((id) =>
+      visibleIds.includes(id)
+    );
+    if (updated.length !== this.selectedTickets.length) {
+      this.selectedTickets = [...updated];
+    }
   }
 
   @action
