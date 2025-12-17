@@ -18,8 +18,30 @@
 		{{/each}}
 	</select>
 </section>
+{{#if this.hasSelectedTickets}}
+  <section class="tickets-bulk-actions">
+    <strong>Bulk Actions: </strong>
+    <ul class="list" {{on "click" this.handleBulkAction}}>
+        <li data-action="pickup">Pick Up</li>
+        <li data-action="merge">Merge</li>
+        <li data-action="assign-to">Assign To</li>
+        <li data-action="update">Update</li>
+        <li data-action="delete">Delete</li>
+    </ul>
+  </section>
+{{/if}}
 
 <section class="tickets-page-listing">
-	<TicketsList @filter={{this.query}} @status={{this.status}} @priority={{this.priority}} @onFilter={{this.updateQuery}} @resetFilters={{this.resetFilters}} />
-	{{outlet}}
+		<TicketsList
+			@filter={{this.query}}
+			@status={{this.status}}
+			@priority={{this.priority}}
+			@page={{this.page}}
+			@pageSize={{this.pageSize}}
+      @totalTickets={{this.totalTickets}}
+      @selectedTickets={{this.selectedTickets}}
+      @actionsHandler={{this.actionsHandler}}
+      @tickets={{this.paginatedTickets}}
+		/>
+		{{outlet}}
 </section>

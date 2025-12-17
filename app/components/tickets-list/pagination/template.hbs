@@ -1,5 +1,24 @@
 <div class="pagination-controls">
+  <div class="grp">
   <button class="pagination-btn" type="button" {{on "click" this.prev}} disabled={{this.isFirst}}>Prev</button>
-  <span class="pagination-info">Page {{this.args.page}} of {{this.totalPages}}</span>
+    <span class="pagination-info">Page
+    <select class="page-select" {{on "change" this.goto}} aria-label="Select page">
+      {{#each this.pageNumbers as |p|}}
+        <option value={{p}} selected={{if (eq p this.args.page) true}}>{{p}}</option>
+      {{/each}}
+    </select>
+    of {{this.totalPages}}
+  </span>
+  </div>
+  <div class="grp">
+  <div class="pagination-size">
+  <label for="page-size-select">Items Per Page:</label>
+  <select id="page-size-select" {{on "change" this.changePageSize}} aria-label="Items per page">
+    {{#each this.pageSizeOptions as |opt|}}
+      <option value={{opt}} selected={{if (eq opt this.args.pageSize) true}}>{{opt}}</option>
+    {{/each}}
+  </select>
+  </div>
   <button class="pagination-btn" type="button" {{on "click" this.next}} disabled={{this.isLast}}>Next</button>
+  </div>
 </div>

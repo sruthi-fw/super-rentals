@@ -32,8 +32,29 @@ export default class TicketsListPaginationComponent extends Component {
 
   @action
   goto(page) {
+    const p = page && page.target ? Number(page.target.value) : Number(page);
     if (this.args.onPageChange) {
-      this.args.onPageChange(page);
+      this.args.onPageChange(p);
+    }
+  }
+
+  get pageNumbers() {
+    const total = this.totalPages;
+    const arr = [];
+    for (let i = 1; i <= total; i++) arr.push(i);
+    return arr;
+  }
+
+  get pageSizeOptions() {
+    return this.args.pageSizeOptions ?? [5, 10, 20, 50];
+  }
+
+  @action
+  changePageSize(event) {
+    const value = event && event.target ? event.target.value : event;
+    const num = Number(value) || Number(this.args.pageSize) || 10;
+    if (this.args.onPageSizeChange) {
+      this.args.onPageSizeChange(num);
     }
   }
 }

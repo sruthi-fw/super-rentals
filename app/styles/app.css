@@ -848,7 +848,7 @@ p {
 
 /* Table-specific styles for tickets (sticky header + scrollable body) */
 .table-wrapper {
-  max-height: 100vh;
+  height: 65vh;
   overflow-y: auto;
   border-radius: 8px;
   border: 1px solid #eef4fb;
@@ -945,6 +945,7 @@ p {
     border-radius: 8px;
   }
 
+.tickets-pagination select,
 .tickets-table select,
 .tickets-page-filters select,
 .tickets-filter select {
@@ -998,6 +999,12 @@ p {
   margin-top: 16px;
 }
 
+.pagination-controls .grp {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
 .pagination-btn {
   border: 1px solid #000;
   background-color: #ffffff;
@@ -1013,5 +1020,30 @@ p {
   opacity: 0.5;
   color: gray;
   cursor: not-allowed;
+}
+
+.tickets-bulk-actions {
+  padding: 16px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.tickets-bulk-actions ul {
+  list-style-type: none;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.tickets-bulk-actions li {
+  padding: 4px 12px;
+  background: #fff;
+  border: 1px solid black;
+  width: fit-content;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
